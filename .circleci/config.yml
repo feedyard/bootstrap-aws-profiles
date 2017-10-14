@@ -40,10 +40,12 @@ jobs:
           command: invoke apply
       - run:
           name: run tests
-          environment:
-            BASH_ENV: env
           command: |
-            echo $AWS_HELLO
+            cat <<EOF > spec/secrets.yml
+            region: $profile_region
+            aws_access_key_id: $profile_access_key
+            aws_secret_access_key: $profile_secret_key
+            EOF
             rspec spec
 
   destroy:

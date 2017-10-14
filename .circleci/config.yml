@@ -7,6 +7,8 @@ jobs:
     environment:
       BASH_ENV: env
       AWS_REGION: $profile_region
+      AWS_ACCESS_KEY_ID: $profile_access_key
+      AWS_SECRET_ACCESS_KEY: $profile_secret_key
     docker:
       - image: quay.io/feedyard/circleci-infra-agent
         auth:

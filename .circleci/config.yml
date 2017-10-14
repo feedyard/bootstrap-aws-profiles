@@ -36,6 +36,9 @@ jobs:
           name: create terraform plan
           command: invoke plan
       - run:
+          name: apply terraform plan
+          command: invoke apply
+      - run:
           name: run tests
           command: invoke test
 

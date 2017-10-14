@@ -75,11 +75,8 @@ jobs:
 
 
 workflows:
-
   version: 2
-
   bootstrap-aws-profile-pipeline:
-
     jobs:
       - deploy
       - approve-destroy:

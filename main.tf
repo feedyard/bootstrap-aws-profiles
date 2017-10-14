@@ -1,6 +1,6 @@
 provider "aws" {
   alias = "profile"
-  region = "us-east-1"
+  region = "${var.profile_region}"
   access_key="${var.profile_access_key}"
   secret_key="${var.profile_secret_key}"
 }

@@ -13,7 +13,8 @@ def plan(ctx):
     cmd = 'terraform plan ' \
            '-var profile_account_id=$profile_account_id ' \
            '-var profile_access_key=$profile_access_key ' \
-           '-var profile_secret_key=$profile_secret_key '
+           '-var profile_secret_key=$profile_secret_key ' \
+           '-var profile_region=$profile_region'
 
     ctx.run(cmd)
 
@@ -22,7 +23,8 @@ def apply(ctx):
     cmd = 'terraform apply ' \
            '-var profile_account_id=$profile_account_id ' \
            '-var profile_access_key=$profile_access_key ' \
-           '-var profile_secret_key=$profile_secret_key '
+           '-var profile_secret_key=$profile_secret_key ' \
+           '-var profile_region=$profile_region'
 
     ctx.run(cmd)
 
@@ -31,7 +33,8 @@ def destroy(ctx):
     cmd = 'terraform destroy ' \
           '-var profile_account_id=$profile_account_id ' \
           '-var profile_access_key=$profile_access_key ' \
-          '-var profile_secret_key=$profile_secret_key -f'
+          '-var profile_secret_key=$profile_secret_key ' \
+          '-var profile_region=$profile_region -f'
 
     ctx.run(cmd)
 

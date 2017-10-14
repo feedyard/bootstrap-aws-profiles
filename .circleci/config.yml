@@ -1,4 +1,4 @@
-default_setup: &default_setup
+defaults: &defaults
   working_directory: ~/bootstrap-aws-profiles
   environment:
     BASH_ENV: env
@@ -8,7 +8,7 @@ default_setup: &default_setup
         username: $QUAY_USER
         password: $QUAY_PASS
 
-each_steps: &each_steps
+setup: &setup
   - checkout
   - setup_remote_docker
 
@@ -18,10 +18,10 @@ version: 2
 jobs:
 
   deploy:
-    <<: *default_setup
+    <<: *defaults
 
     steps:
-      <<: *each_steps
+      <<: *setup
       - run:
           name: confirm Docker
           command: 'docker info'

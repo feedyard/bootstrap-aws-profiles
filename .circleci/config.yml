@@ -9,8 +9,9 @@ defaults: &defaults
         password: $QUAY_PASS
 
 setup: &setup
-  - checkout
-  - setup_remote_docker
+  steps:
+    - checkout
+    - setup_remote_docker
 
 
 version: 2
@@ -20,8 +21,7 @@ jobs:
   deploy:
     <<: *defaults
 
-    steps:
-      <<: *setup
+    <<: *setup
       - run:
           name: confirm Docker
           command: 'docker info'

@@ -15,7 +15,6 @@ def plan(ctx):
            '-var profile_access_key=$profile_access_key ' \
            '-var profile_secret_key=$profile_secret_key '
 
-    ctx.run("terraform get", pty=True)
     ctx.run(cmd, pty=True)
 
 @task

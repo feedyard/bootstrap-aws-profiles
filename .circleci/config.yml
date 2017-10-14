@@ -40,7 +40,9 @@ jobs:
           command: invoke apply
       - run:
           name: run tests
-          command: 'rspec spec'
+          command: |
+            echo $AWS_HELLO
+            rspec spec
 
   destroy:
       working_directory: ~/bootstrap-aws-profiles

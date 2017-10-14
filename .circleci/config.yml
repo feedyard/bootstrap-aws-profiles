@@ -41,7 +41,7 @@ jobs:
       - run:
           name: run tests
           environment:
-            BASH_ENV: env
+            AWS_REGION: us-east-1
           command: invoke test
 
   destroy:

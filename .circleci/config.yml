@@ -102,3 +102,6 @@ workflows:
       - destroy:
           requires:
             - approve-destroy
+
+test: &test
+  - one

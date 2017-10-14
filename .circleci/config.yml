@@ -6,6 +6,7 @@ jobs:
     working_directory: ~/bootstrap-aws-profiles
     environment:
       BASH_ENV: env
+      AWS_REGION: $profile_region
     docker:
       - image: quay.io/feedyard/circleci-infra-agent
         auth:

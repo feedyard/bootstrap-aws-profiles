@@ -8,7 +8,7 @@ default_setup: &default_setup
         username: $QUAY_USER
         password: $QUAY_PASS
 
-default_steps: &default_steps
+each_steps: &each_steps
   - checkout
   - setup_remote_docker
 
@@ -21,7 +21,7 @@ jobs:
     <<: *default_setup
 
     steps:
-      <<: *default_steps
+      <<: *each_steps
       - run:
           name: confirm Docker
           command: 'docker info'

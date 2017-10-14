@@ -28,6 +28,7 @@ jobs:
             [bootstrap-profile]
             aws_access_key_id=$profile_access_key
             aws_secret_access_key=$profile_secret_key
+            region=$profile_region
             EOF
       - run:
           name: initialize the terraform state backend
@@ -41,11 +42,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            cat <<EOF > spec/secrets.yml
-            region: $profile_region
-            aws_access_key_id: $profile_access_key
-            aws_secret_access_key: $profile_secret_key
-            EOF
+            aws configure --profile bootstrap-profile
             rspec spec
 
   destroy:

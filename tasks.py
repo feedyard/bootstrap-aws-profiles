@@ -6,6 +6,8 @@ def init(ctx):
 
 @task
 def test(ctx):
+    ctx.run("ruby -v")
+    ctx.run("gem list")
     ctx.run("bundle exec rspec spec")
 
 @task

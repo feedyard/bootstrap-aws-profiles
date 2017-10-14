@@ -6,7 +6,7 @@ def init(ctx):
 
 @task
 def test(ctx):
-    ctx.run("rspec")
+    ctx.run("bundle exec rspec spec")
 
 @task
 def plan(ctx):

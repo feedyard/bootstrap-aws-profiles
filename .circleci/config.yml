@@ -8,6 +8,11 @@ defaults: &defaults
         username: $QUAY_USER
         password: $QUAY_PASS
 
+
+test: &test
+  - one
+
+  
 version: 2
 
 jobs:
@@ -102,6 +107,3 @@ workflows:
       - destroy:
           requires:
             - approve-destroy
-
-test: &test
-  - one

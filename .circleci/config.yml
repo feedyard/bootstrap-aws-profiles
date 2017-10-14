@@ -25,7 +25,7 @@ jobs:
           name: decrypt secrets
           command: 'invoke dec'
       - run:
-          name: set aws credentials
+          name: setup aws profile
           command: bash setup_profile.sh
       - run:
           name: initialize the terraform state backend
@@ -47,15 +47,8 @@ jobs:
             name: decrypt secrets
             command: 'invoke dec'
         - run:
-            name: set aws credentials
-            command: |
-              mkdir ~/.aws
-              cat <<EOF > ~/.aws/credentials
-              [bootstrap-profile]
-              aws_access_key_id=$profile_access_key
-              aws_secret_access_key=$profile_secret_key
-              region=$profile_region
-              EOF
+            name: setup aws profile
+            command: bash setup_profile.sh
         - run:
             name: initialize the terraform state backend
             command: invoke init
@@ -80,14 +73,8 @@ jobs:
             name: decrypt secrets
             command: 'invoke dec'
         - run:
-            name: set aws credentials
-            command: |
-              mkdir ~/.aws
-              cat <<EOF > ~/.aws/credentials
-              [bootstrap-profile]
-              aws_access_key_id=$profile_access_key
-              aws_secret_access_key=$profile_secret_key
-              EOF
+            name: setup aws profile
+            command: bash setup_profile.sh
         - run:
             name: initialize the terraform state backend
             command: invoke init

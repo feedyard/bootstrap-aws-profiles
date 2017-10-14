@@ -34,31 +34,31 @@ jobs:
           name: create terraform plan
           command: invoke plan
 
-    apply:
-      <<: *defaults
+  apply:
+    <<: *defaults
 
-      steps:
-        - checkout
-        - setup_remote_docker
-        - run:
-            name: confirm Docker
-            command: 'docker info'
-        - run:
-            name: decrypt secrets
-            command: 'invoke dec'
-        - run:
-            name: setup aws profile
-            command: bash setup_profile.sh
-        - run:
-            name: initialize the terraform state backend
-            command: invoke init
-        - run:
-            name: apply terraform plan
-            command: invoke apply
-        - run:
-            name: run tests
-            command: |
-              AWS_PROFILE=bootstrap-profile rspec spec
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: confirm Docker
+          command: 'docker info'
+      - run:
+          name: decrypt secrets
+          command: 'invoke dec'
+      - run:
+          name: setup aws profile
+          command: bash setup_profile.sh
+      - run:
+          name: initialize the terraform state backend
+          command: invoke init
+      - run:
+          name: apply terraform plan
+          command: invoke apply
+      - run:
+          name: run tests
+          command: |
+            AWS_PROFILE=bootstrap-profile rspec spec
 
   destroy:
       <<: *defaults

@@ -41,7 +41,7 @@ def enc(ctx, keyfile):
     ctx.run("openssl aes-256-cbc -e -in {} -out env.ci -k $KEY".format(keyfile), pty=True)
 
 @task
-def dec(ctx, keyfile):
+def dec(ctx):
     ctx.run("openssl aes-256-cbc -d -in env.ci -out env -k $KEY", pty=True)
 
 

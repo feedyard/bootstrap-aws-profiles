@@ -2,11 +2,11 @@ from invoke import task
 
 @task
 def init(ctx):
-    ctx.run("terraform init", pty=True)
+    ctx.run("terraform init")
 
 @task
 def test(ctx):
-    ctx.run("bundle exec rspec spec", pty=True)
+    ctx.run("bundle exec rspec spec")
 
 @task
 def plan(ctx):
@@ -24,7 +24,7 @@ def apply(ctx):
            '-var profile_access_key=$profile_access_key ' \
            '-var profile_secret_key=$profile_secret_key '
 
-    ctx.run(cmd, pty=True)
+    ctx.run(cmd)
 
 @task
 def destroy(ctx):
@@ -33,11 +33,11 @@ def destroy(ctx):
           '-var profile_access_key=$profile_access_key ' \
           '-var profile_secret_key=$profile_secret_key -f'
 
-    ctx.run(cmd, pty=True)
+    ctx.run(cmd)
 
 @task
 def enc(ctx, keyfile):
-    ctx.run("openssl aes-256-cbc -e -in {} -out env.ci -k $KEY".format(keyfile), pty=True)
+    ctx.run("openssl aes-256-cbc -e -in {} -out env.ci -k $KEY".format(keyfile))
 
 @task
 def dec(ctx):

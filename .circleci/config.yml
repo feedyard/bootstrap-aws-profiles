@@ -1,38 +1,45 @@
+default_setup: &default_setup
+  working_directory: ~/bootstrap-aws-profiles
+  environment:
+    BASH_ENV: env
+  docker:
+    - image: quay.io/feedyard/circleci-infra-agent
+      auth:
+        username: $QUAY_USER
+        password: $QUAY_PASS
+
+default_steps: &default_steps
+  - checkout
+  - setup_remote_docker
+  - run:
+      name: confirm Docker
+      command: 'docker info'
+  - run:
+      name: decrypt secrets
+      command: 'invoke dec'
+  - run:
+      name: set aws credentials
+      command: |
+        mkdir ~/.aws
+        cat <<EOF > ~/.aws/credentials
+        [bootstrap-profile]
+        aws_access_key_id=$profile_access_key
+        aws_secret_access_key=$profile_secret_key
+        region=$profile_region
+        EOF
+  - run:
+      name: initialize the terraform state backend
+      command: invoke init
+
 version: 2
 
 jobs:
 
   deploy:
-    working_directory: ~/bootstrap-aws-profiles
-    environment:
-      BASH_ENV: env
-    docker:
-      - image: quay.io/feedyard/circleci-infra-agent
-        auth:
-          username: $QUAY_USER
-          password: $QUAY_PASS
+    <<: *default_setup
+
     steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: confirm Docker
-          command: 'docker info'
-      - run:
-          name: decrypt secrets
-          command: 'invoke dec'
-      - run:
-          name: set aws credentials
-          command: |
-            mkdir ~/.aws
-            cat <<EOF > ~/.aws/credentials
-            [bootstrap-profile]
-            aws_access_key_id=$profile_access_key
-            aws_secret_access_key=$profile_secret_key
-            region=$profile_region
-            EOF
-      - run:
-          name: initialize the terraform state backend
-          command: invoke init
+      <<: *default_steps
       - run:
           name: create terraform plan
           command: invoke plan

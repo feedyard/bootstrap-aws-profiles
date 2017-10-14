@@ -34,7 +34,7 @@ def destroy(ctx):
           '-var profile_account_id=$profile_account_id ' \
           '-var profile_access_key=$profile_access_key ' \
           '-var profile_secret_key=$profile_secret_key ' \
-          '-var profile_region=$profile_region -f'
+          '-var profile_region=$profile_region -force'
 
     ctx.run(cmd)
 

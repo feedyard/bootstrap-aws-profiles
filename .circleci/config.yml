@@ -15,8 +15,6 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          command: bundle install
-      - run:
           name: confirm Docker
           command: 'docker info'
       - run:
@@ -42,7 +40,7 @@ jobs:
           command: invoke apply
       - run:
           name: run tests
-          command: invoke test
+          command: 'rspec spec'
 
   destroy:
       working_directory: ~/bootstrap-aws-profiles

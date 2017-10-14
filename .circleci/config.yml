@@ -1,0 +1,91 @@
+version: 2
+
+jobs:
+
+  deploy:
+    working_directory: ~/bootstrap-aws-profiles
+    environment:
+      BASH_ENV: env
+    docker:
+      - image: quay.io/feedyard/circleci-infra-agent
+        auth:
+          username: $QUAY_USER
+          password: $QUAY_PASS
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: confirm Docker
+          command: 'docker info'
+      - run:
+          name: decrypt secrets
+          command: 'invoke dec'
+      - run:
+          name: set aws credentials
+          command: |
+            mkdir ~/.aws
+            cat <<EOF > ~/.aws/credentials
+            [bootstrap-profile]
+            aws_access_key_id=$profile_access_key
+            aws_secret_access_key=$profile_secret_key
+            EOF
+      - run:
+          name: initialize the terraform state backend
+          command: invoke init
+      - run:
+          name: create terraform plan
+          command: invoke plan
+      - run:
+          name: run tests
+          command: invoke test
+
+  destroy:
+      working_directory: ~/bootstrap-aws-profiles
+      environment:
+        BASH_ENV: env
+      docker:
+        - image: quay.io/feedyard/circleci-infra-agent
+          auth:
+            username: $QUAY_USER
+            password: $QUAY_PASS
+      steps:
+        - checkout
+        - setup_remote_docker
+        - run:
+            name: confirm Docker
+            command: 'docker info'
+        - run:
+            name: decrypt secrets
+            command: 'invoke dec'
+        - run:
+            name: set aws credentials
+            command: |
+              mkdir ~/.aws
+              cat <<EOF > ~/.aws/credentials
+              [bootstrap-profile]
+              aws_access_key_id=$profile_access_key
+              aws_secret_access_key=$profile_secret_key
+              EOF
+        - run:
+            name: initialize the terraform state backend
+            command: invoke init
+        - run:
+            name: delete all state configuration
+            command: invoke destroy
+
+
+workflows:
+
+  version: 2
+
+  bootstrap-aws-profile-pipeline:
+
+    jobs:
+      - deploy
+      - approve-destroy:
+         type: approval
+         requires:
+           -  deploy
+      - destroy:
+          requires:
+            - approve-destroy

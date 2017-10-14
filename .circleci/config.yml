@@ -41,7 +41,7 @@ jobs:
       - run:
           name: run tests
           environment:
-            AWS_REGION: us-east-1
+            AWS_REGION: $profile_region
           command: invoke test
 
   destroy:

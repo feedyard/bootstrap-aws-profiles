@@ -8,11 +8,6 @@ defaults: &defaults
         username: $QUAY_USER
         password: $QUAY_PASS
 
-
-test: &test
-  - one
-
-  
 version: 2
 
 jobs:
@@ -62,8 +57,7 @@ jobs:
           command: invoke apply
       - run:
           name: run tests
-          command: |
-            AWS_PROFILE=bootstrap-profile rspec spec
+          command: AWS_PROFILE=bootstrap-profile rspec spec
 
   destroy:
       <<: *defaults

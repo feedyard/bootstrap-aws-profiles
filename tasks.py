@@ -45,8 +45,3 @@ def enc(ctx, keyfile):
 @task
 def dec(ctx):
     ctx.run("openssl aes-256-cbc -d -in env.ci -out env -k $KEY")
-
-
-    # \
-    # '-var sandbox_access_key=$sandbox_access_key ' \
-    # '-var sandbox_secret_key=$sandbox_secret_key'

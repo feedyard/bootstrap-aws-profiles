@@ -40,6 +40,8 @@ jobs:
           command: invoke apply
       - run:
           name: run tests
+          environment:
+            BASH_ENV: env
           command: invoke test
 
   destroy:

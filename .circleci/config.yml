@@ -40,10 +40,6 @@ jobs:
           command: invoke apply
       - run:
           name: run tests
-          environment:
-            AWS_REGION: $profile_region
-            AWS_ACCESS_KEY_ID: $profile_access_key
-            AWS_SECRET_ACCESS_KEY: $profile_secret_key
           command: invoke test
 
   destroy:

@@ -16,3 +16,6 @@ variable "profile_account_id" {}
 variable "profile_access_key" {}
 variable "profile_secret_key" {}
 variable "profile_region" {}
+
+# for each account added, include TF_VAR in env to set
+variable "sandbox_account_id" {}

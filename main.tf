@@ -23,7 +23,7 @@ resource "aws_iam_group_policy" "assume_nonprod_role_group_policy" {
     {
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
-      "Resource": "arn:aws:iam::750464328775:role/TerraformRole"
+      "Resource": "arn:aws:iam::${var.sandbox_account_id}:role/TerraformRole"
     },
     {
       "Effect": "Allow",

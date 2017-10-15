@@ -17,5 +17,5 @@ variable "profile_access_key" {}
 variable "profile_secret_key" {}
 variable "profile_region" {}
 
-# for each account added, include TF_VAR in env to set
-variable "sandbox_account_id" {}
+# for each account added to the groups with assume rights
+variable "sandbox_account_id" { default = "750464328775" }

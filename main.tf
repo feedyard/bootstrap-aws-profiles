@@ -28,7 +28,17 @@ resource "aws_iam_group_policy" "assume_nonprod_role_group_policy" {
     {
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
-      "Resource": "arn:aws:iam::151701496001:role/TerraformRole"
+      "Resource": "arn:aws:iam::${var.nonprod_account_id}:role/TerraformRole"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": "arn:aws:iam::${var.sandbox_account_id}:role/KopsRole"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": "arn:aws:iam::${var.nonprod_account_id}:role/KopsRole"
     }
   ]
 }
@@ -54,7 +64,12 @@ resource "aws_iam_group_policy" "assume_prod_role_group_policy" {
     {
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
-      "Resource": "arn:aws:iam::538257557236:role/TerraformRole"
+      "Resource": "arn:aws:iam::${var.prod_account_id}:role/TerraformRole"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": "arn:aws:iam::${var.prod_account_id}:role/KopsRole"
     }
   ]
 }

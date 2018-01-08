@@ -11,19 +11,6 @@ This 'profiles' account will not contain any infrastructure apart from roles/per
 
 
 
-## Profile Account
-
-Keys are assumed to be available as terraform env vars.  
-THe profile account depends on:  
-TF_VAR_profile_account_id
-TF_VAR_profile_access_ley
-TF_VAR_profile_secret_key
-
-## Infrastructure Accounts
-
-For each additional account where users are granted assume rights:
-TF_VAR_account_access_key
-TF_VAR_account_secret_key
 
 
 ## Dependencies
@@ -33,3 +20,9 @@ python3
 invoke
 ruby
 awspec
+
+## circleci implementation
+
+The circleci workflow assumes the expected aws access information is provided via an encrypted file used to define
+env variables that include the aws account ids for each account that will have assume-role definition configured.
+

@@ -45,7 +45,6 @@ resource "aws_iam_group_policy" "assume_nonprod_role_group_policy" {
 EOF
 }
 
-
 # prod accounts
 resource "aws_iam_group" "assume_prod_role_group" {
   provider = "aws.profile"
@@ -75,3 +74,5 @@ resource "aws_iam_group_policy" "assume_prod_role_group_policy" {
 }
 EOF
 }
+
+

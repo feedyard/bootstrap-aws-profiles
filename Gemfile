@@ -2,4 +2,4 @@
 
 source 'https://rubygems.org'
 
-gem 'awspec', '~> 0.87'
+gem 'awspec', '~> 1'

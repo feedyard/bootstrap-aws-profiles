@@ -63,7 +63,7 @@ jobs:
           command: invoke apply
       - run:
           name: run tests
-          command: AWS_PROFILE=bootstrap-profile rspec spec
+          command: invoke test
 
   destroy:
       <<: *defaults

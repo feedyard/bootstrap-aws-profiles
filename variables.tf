@@ -14,6 +14,6 @@ variable "profile_secret_key" {}
 variable "profile_region" {}
 
 # for each account added to the groups with assume rights
-variable "sandbox_account_id" {}
-variable "nonprod_account_id" {}
-variable "prod_account_id" {}
+variable "sandbox_account_id" { default = "750464328775" }
+variable "nonprod_account_id" { default = "151701496001" }
+variable "prod_account_id" { default = "538257557236" }

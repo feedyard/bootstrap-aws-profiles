@@ -24,5 +24,5 @@ awspec
 ## circleci implementation
 
 The circleci workflow assumes the expected aws access information is provided via an encrypted file used to define
-env variables that include the aws account ids for each account that will have assume-role definition configured.
+env variables.
 

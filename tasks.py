@@ -16,7 +16,6 @@ def plan(ctx):
           '-var profile_secret_key=$profile_secret_key ' \
           '-var profile_region=$profile_region'
 
-    ctx.run("echo $profile_region")
     ctx.run(cmd)
 
 @task

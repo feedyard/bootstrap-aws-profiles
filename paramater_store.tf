@@ -35,7 +35,7 @@ resource "aws_iam_group_policy" "use_parameter_store_group_policy" {
                 "ssm:GetParameters",
                 "ssm:DeleteParameter"
             ],
-            "Resource": "arn:aws:ssm:us-east-1:667882779648:*"
+            "Resource": "*"
         }
     ]
 }

@@ -4,12 +4,12 @@ require 'spec_helper'
 
 describe iam_group('AssumeNonprodRoleGroup') do
   it { should exist }
-  # it { should have_inline_policy('UseParameterStorePolicy') }
+  it { should have_inline_policy('AssumeNonprodRolePolicy') }
 end
 
 describe iam_group('AssumeProdRoleGroup') do
   it { should exist }
-  # it { should have_inline_policy('UseParameterStorePolicy') }
+  it { should have_inline_policy('AssumeProdRolePolicy') }
 end
 
 describe iam_group('UseParameterStoreGroup') do

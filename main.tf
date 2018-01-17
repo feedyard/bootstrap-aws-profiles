@@ -13,7 +13,7 @@ resource "aws_iam_group" "assume_nonprod_role_group" {
 
 resource "aws_iam_group_policy" "assume_nonprod_role_group_policy" {
   provider = "aws.profile"
-  name = "AssumeRolePolicy"
+  name = "AssumeNonprodRolePolicy"
   group = "${aws_iam_group.assume_nonprod_role_group.id}"
 
   policy = <<EOF
@@ -53,7 +53,7 @@ resource "aws_iam_group" "assume_prod_role_group" {
 
 resource "aws_iam_group_policy" "assume_prod_role_group_policy" {
   provider = "aws.profile"
-  name = "AssumeRolePolicy"
+  name = "AssumeProdRolePolicy"
   group = "${aws_iam_group.assume_prod_role_group.id}"
 
   policy = <<EOF

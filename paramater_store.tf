@@ -33,7 +33,12 @@ resource "aws_iam_group_policy" "use_parameter_store_group_policy" {
                 "ssm:DescribeParameters",
                 "ssm:PutParameter",
                 "ssm:GetParameters",
-                "ssm:DeleteParameter"
+                "ssm:DeleteParameter",
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+                "kms:DescribeKey"
             ],
             "Resource": "*"
         }

@@ -67,7 +67,7 @@ resource "aws_iam_group_policy" "read_cloudtrail_logs_group_policy" {
         "s3:GetObject",
         "s3:GetObjectVersion"
       ],
-      "Resource": "arn:aws:s3::${aws_s3_bucket.feedyard-profile-cloudtraillogs.arn}"
+      "Resource": "${aws_s3_bucket.feedyard-profile-cloudtraillogs.arn}"
     }
   ]
 }

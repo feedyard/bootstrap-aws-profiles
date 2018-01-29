@@ -74,5 +74,3 @@ resource "aws_iam_group_policy" "assume_prod_role_group_policy" {
 }
 EOF
 }
-
-

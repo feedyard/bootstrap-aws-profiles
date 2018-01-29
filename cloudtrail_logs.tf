@@ -1,6 +1,7 @@
 
 resource "aws_s3_bucket" "feedyard-profile-cloudtraillogs" {
-  bucket        = "feedyard-profile-cloudtraillogs"
+  provider = "aws.profile"
+  bucket = "feedyard-profile-cloudtraillogs"
   force_destroy = true
 
   policy = <<POLICY

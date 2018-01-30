@@ -17,3 +17,6 @@ variable "profile_region" {}
 variable "sandbox_account_id" { default = "750464328775" }
 variable "nonprod_account_id" { default = "151701496001" }
 variable "prod_account_id" { default = "538257557236" }
+
+# cloudtrail log bucket name
+variable "cloudtrail_bucket_name" { default = "feedyard-profile-cloudtraillogs" }

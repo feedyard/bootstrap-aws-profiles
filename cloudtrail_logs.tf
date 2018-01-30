@@ -24,12 +24,7 @@ resource "aws_s3_bucket" "feedyard-profile-cloudtraillogs" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::feedyard-profile-cloudtraillogs/*",
-            "Condition": {
-                "StringEquals": {
-                    "s3:x-amz-acl": "bucket-owner-full-control"
-                }
-            }
+            "Resource": "arn:aws:s3:::feedyard-profile-cloudtraillogs/*"
         }
     ]
 }
@@ -67,7 +62,7 @@ resource "aws_iam_group_policy" "read_cloudtrail_logs_group_policy" {
         "s3:GetObject",
         "s3:GetObjectVersion"
       ],
-      "Resource": "${aws_s3_bucket.feedyard-profile-cloudtraillogs.arn}"
+      "Resource": "arn:aws:s3:::feedyard-profile-cloudtraillogs"
     }
   ]
 }

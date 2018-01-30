@@ -24,7 +24,12 @@ resource "aws_s3_bucket" "feedyard-profile-cloudtraillogs" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::feedyard-profile-cloudtraillogs/*"
+            "Resource": "arn:aws:s3:::feedyard-profile-cloudtraillogs/AWSLogs/${var.profile_account_id}/*",
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": "bucket-owner-full-control"
+                }
+            }
         }
     ]
 }

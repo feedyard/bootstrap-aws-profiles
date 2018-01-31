@@ -1,6 +1,6 @@
-resource "aws_cloudtrail" "profile_cloudtrail_logs" {
+resource "aws_cloudtrail" "feedyard_cloudtrail_logs" {
   provider = "aws.profile"
-  name = "ProfileCloudtrailLogs"
+  name = "FeedyardCloudtrailLogs"
   enable_logging = "true"
   include_global_service_events = "true"
   is_multi_region_trail = "true"

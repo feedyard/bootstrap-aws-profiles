@@ -18,7 +18,7 @@ resource "aws_s3_bucket" "cloudtrail_logs" {
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "AWSCloudTrailAclCheck20131101",
+            "Sid": "AWSCloudTrailAclCheck",
             "Effect": "Allow",
             "Principal": {
               "Service": "cloudtrail.amazonaws.com"
@@ -27,17 +27,14 @@ resource "aws_s3_bucket" "cloudtrail_logs" {
             "Resource": "arn:aws:s3:::${var.cloudtrail_bucket_name}"
         },
         {
-            "Sid": "AWSCloudTrailWrite20131101",
+            "Sid": "AWSCloudTrailWrite",
             "Effect": "Allow",
             "Principal": {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
             "Resource": [
-              "arn:aws:s3:::${var.cloudtrail_bucket_name}/AWSLogs/${var.profile_account_id}/*",
-              "arn:aws:s3:::${var.cloudtrail_bucket_name}/AWSLogs/${var.sandbox_account_id}/*",
-              "arn:aws:s3:::${var.cloudtrail_bucket_name}/AWSLogs/${var.nonprod_account_id}/*",
-              "arn:aws:s3:::${var.cloudtrail_bucket_name}/AWSLogs/${var.prod_account_id}/*"
+              "arn:aws:s3:::${var.cloudtrail_bucket_name}/AWSLogs/${var.profile_account_id}/*"
             ],
             "Condition": {
                 "StringEquals": {

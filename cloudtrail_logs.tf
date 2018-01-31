@@ -18,7 +18,7 @@ resource "aws_s3_bucket" "cloudtrail_logs" {
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "AWSCloudTrailAclCheck20150319",
+            "Sid": "AWSCloudTrailAclCheck20131101",
             "Effect": "Allow",
             "Principal": {
               "Service": "cloudtrail.amazonaws.com"
@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "cloudtrail_logs" {
             "Resource": "arn:aws:s3:::${var.cloudtrail_bucket_name}"
         },
         {
-            "Sid": "AWSCloudTrailWrite20150319",
+            "Sid": "AWSCloudTrailWrite20131101",
             "Effect": "Allow",
             "Principal": {
               "Service": "cloudtrail.amazonaws.com"
@@ -49,8 +49,6 @@ resource "aws_s3_bucket" "cloudtrail_logs" {
 }
 POLICY
 }
-
-
 
 //resource "aws_iam_group" "read_cloudtrail_logs_group" {
 //  provider = "aws.profile"

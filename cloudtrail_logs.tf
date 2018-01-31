@@ -1,10 +1,10 @@
 resource "aws_cloudtrail" "profile_cloudtrail_logs" {
   provider = "aws.profile"
   name = "ProfileCloudtrailLogs"
-  enable_logging = true
-  include_global_service_events = true
-  is_multi_region_trail = true
-  include_global_service_events = true
+  enable_logging = "true"
+  include_global_service_events = "true"
+  is_multi_region_trail = "true"
+  include_global_service_events = "true"
   s3_bucket_name = "${var.cloudtrail_bucket_name}"
 }
 

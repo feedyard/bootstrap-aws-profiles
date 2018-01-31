@@ -19,4 +19,4 @@ variable "nonprod_account_id" { default = "151701496001" }
 variable "prod_account_id" { default = "538257557236" }
 
 # cloudtrail log bucket name
-variable "cloudtrail_bucket_name" { default = "feedyard-profile-cloudtraillogs" }
+variable "cloudtrail_bucket_name" { default = "feedyard-cloudtrail-logs" }

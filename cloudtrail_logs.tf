@@ -34,7 +34,8 @@ resource "aws_s3_bucket" "cloudtrail_logs" {
             },
             "Action": "s3:PutObject",
             "Resource": [
-              "arn:aws:s3:::${var.cloudtrail_bucket_name}/AWSLogs/${var.profile_account_id}/*"
+              "arn:aws:s3:::${var.cloudtrail_bucket_name}/AWSLogs/${var.profile_account_id}/*",
+              "arn:aws:s3:::${var.cloudtrail_bucket_name}/AWSLogs/${var.sandbox_account_id}/*"
             ],
             "Condition": {
                 "StringEquals": {

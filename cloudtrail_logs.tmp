@@ -50,6 +50,7 @@ resource "aws_s3_bucket" "cloudtrail_logs" {
 POLICY
 }
 
+# this would be the stuff related to granting logz.io access to these logs
 //resource "aws_iam_group" "read_cloudtrail_logs_group" {
 //  provider = "aws.profile"
 //  name = "ReadCloudtrailLogsGroup"

@@ -1,12 +1,9 @@
 defaults: &defaults
   working_directory: ~/bootstrap-aws-profiles
   environment:
-    BASH_ENV: env
+    BASH_ENV: local.env
   docker:
     - image: quay.io/feedyard/circleci-infra-agent
-      auth:
-        username: $QUAY_USER
-        password: $QUAY_PASS
 
 version: 2
 
@@ -26,7 +23,7 @@ jobs:
           command: invoke dec
       - run:
           name: setup terraform state file location
-          command: bash setup_backend.sh profile $profile_region
+          command: bash setup_backend.sh profile
       - run:
           name: setup aws profile
           command: bash setup_profile.sh
@@ -51,7 +48,7 @@ jobs:
           command: invoke dec
       - run:
           name: setup terraform state file location
-          command: bash setup_backend.sh profile $profile_region
+          command: bash setup_backend.sh profile
       - run:
           name: setup aws profile
           command: bash setup_profile.sh
@@ -79,7 +76,7 @@ jobs:
             command: invoke dec
         - run:
             name: setup terraform state file location
-            command: bash setup_backend.sh profile $profile_region
+            command: bash setup_backend.sh profile
         - run:
             name: setup aws profile
             command: bash setup_profile.sh
@@ -89,7 +86,6 @@ jobs:
         - run:
             name: delete all state configuration
             command: invoke destroy
-
 
 workflows:
   version: 2

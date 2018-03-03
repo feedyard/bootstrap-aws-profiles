@@ -14,11 +14,7 @@ the mecessary permissions and a kms key for use with parameter store in the prof
 
 ## Dependencies
 
-terraform
-python3
-invoke
-ruby
-awspec
+See Dockerfile in [circleci-infra-agent](https://github.com/feedyard/circleci-infra-agent) for dependencies  
 
 ## circleci implementation
 

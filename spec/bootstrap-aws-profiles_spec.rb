@@ -36,7 +36,7 @@ describe iam_group('DefaultIAMUsersGroup') do
   it { should have_inline_policy('UseParameterStorePolicy') }
 end
 
-describe kms('alias/parameter_store_key') do
+describe kms('parameter_store_key') do
   it { should exist }
   it { should be_enabled }
 end

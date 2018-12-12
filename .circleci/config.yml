@@ -20,6 +20,8 @@ jobs:
           command: echo "test"
 
 workflows:
+  version: 2
+  
   bootstrap-aws-profiles-iam-only-deploy:
     jobs:
       - test-job

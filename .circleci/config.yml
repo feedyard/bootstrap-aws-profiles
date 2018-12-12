@@ -2,11 +2,11 @@
 version: 2.1
 
 orbs:
-  terraform: feedyard/terraform@dev:latest
+  terraform-test: feedyard/terraform@dev:latest
 
 workflows:
   bootstrap-aws-profiles-iam-only-deploy:
     jobs:
-      - terraform/plan:
+      - terraform-test/plan:
           account: profile
           env: profile

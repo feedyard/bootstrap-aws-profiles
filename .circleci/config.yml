@@ -1,8 +1,14 @@
 ---
 version: 2.1
 
-orbs:
-  terraform: feedyard/terraform@dev:latest
+executors:
+
+  circleci-infra-agent:
+    description: The circleci agent container to use when running aws infrastructure pipelines jobs
+    docker:
+      - image: quay.io/feedyard/circleci-infra-agent
+    environment:
+      BASH_ENV: local.env
 
 jobs:
 

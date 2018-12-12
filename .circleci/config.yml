@@ -1,27 +1,14 @@
 ---
 version: 2.1
 
-executors:
-
-  circleci-infra-agent:
-    description: The circleci agent container to use when running aws infrastructure pipelines jobs
-    docker:
-      - image: quay.io/feedyard/circleci-infra-agent
-    environment:
-      BASH_ENV: local.env
-
-jobs:
-
-  test-job:
-    executor: circleci-infra-agent
-    steps:
-      - run:
-          name: test
-          command: echo "test step"
+orbs:
+  terraform: feedyard/terraform@dev:latest
 
 workflows:
   version: 2
 
   bootstrap-aws-profiles-iam-only-deploy:
     jobs:
-      - test-job
+      - terraform/plan:
+          account: profile
+          env: profile

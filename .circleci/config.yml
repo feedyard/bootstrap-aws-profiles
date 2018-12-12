@@ -4,14 +4,6 @@ version: 2.1
 orbs:
   terraform: feedyard/terraform@dev:latest
 
-jobs:
-  write:
-    executor: terraform/circleci-infra-agent
-    steps:
-      - run:
-          name: output backend.conf
-          command: cat backend.conf
-
 workflows:
   version: 2
 
@@ -20,6 +12,3 @@ workflows:
       - terraform/plan:
           account: profile
           env: profile
-      - write:
-          requires:
-            - terraform/plan

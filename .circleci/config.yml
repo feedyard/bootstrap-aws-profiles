@@ -20,4 +20,6 @@ workflows:
       - terraform/plan:
           account: profile
           env: profile
-      - write
+      - write:
+          requires:
+            - terraform/plan

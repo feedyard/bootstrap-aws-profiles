@@ -17,11 +17,11 @@ jobs:
     steps:
       - run:
           name: test
-          command: echo "test"
+          command: echo "test step"
 
 workflows:
   version: 2
-  
+
   bootstrap-aws-profiles-iam-only-deploy:
     jobs:
       - test-job

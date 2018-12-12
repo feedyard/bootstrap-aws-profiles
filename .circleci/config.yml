@@ -6,7 +6,7 @@ orbs:
 
 jobs:
   write:
-    executor: circleci-infra-agent
+    executor: terraform/circleci-infra-agent
     steps:
       - run:
           name: output backend.conf

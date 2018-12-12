@@ -2,11 +2,18 @@
 version: 2.1
 
 orbs:
-  terraform-test: feedyard/terraform@dev:latest
+  terraform: feedyard/terraform@dev:latest
+
+jobs:
+
+  test-job:
+    executor: circleci-infra-agent
+    steps:
+      - run:
+          name: test
+          command: echo "test"
 
 workflows:
   bootstrap-aws-profiles-iam-only-deploy:
     jobs:
-      - terraform-test/plan:
-          account: profile
-          env: profile
+      - test-job

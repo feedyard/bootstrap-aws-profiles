@@ -1,108 +1,12 @@
-defaults: &defaults
-  working_directory: ~/bootstrap-aws-profiles
-  environment:
-    BASH_ENV: local.env
-  docker:
-    - image: quay.io/feedyard/circleci-infra-agent
+---
+version: 2.1
 
-version: 2
-
-jobs:
-
-  plan:
-    <<: *defaults
-
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: confirm Docker
-          command: docker info
-      - run:
-          name: decrypt secrets
-          command: invoke dec
-      - run:
-          name: setup terraform state file location
-          command: bash setup_backend.sh profile
-      - run:
-          name: setup aws profile
-          command: bash setup_profile.sh
-      - run:
-          name: initialize the terraform state backend
-          command: invoke init
-      - run:
-          name: create terraform plan
-          command: invoke plan
-
-  apply:
-    <<: *defaults
-
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: confirm Docker
-          command: docker info
-      - run:
-          name: decrypt secrets
-          command: invoke dec
-      - run:
-          name: setup terraform state file location
-          command: bash setup_backend.sh profile
-      - run:
-          name: setup aws profile
-          command: bash setup_profile.sh
-      - run:
-          name: initialize the terraform state backend
-          command: invoke init
-      - run:
-          name: apply terraform plan
-          command: invoke apply
-      - run:
-          name: run tests
-          command: invoke test
-
-  destroy:
-      <<: *defaults
-
-      steps:
-        - checkout
-        - setup_remote_docker
-        - run:
-            name: confirm Docker
-            command: docker info
-        - run:
-            name: decrypt secrets
-            command: invoke dec
-        - run:
-            name: setup terraform state file location
-            command: bash setup_backend.sh profile
-        - run:
-            name: setup aws profile
-            command: bash setup_profile.sh
-        - run:
-            name: initialize the terraform state backend
-            command: invoke init
-        - run:
-            name: delete all state configuration
-            command: invoke destroy
+orbs:
+  terraform: feedyard/terraform@dev:latest
 
 workflows:
-  version: 2
-  bootstrap-aws-profile-pipeline:
+  bootstrap-aws-profiles-iam-only-deploy:
     jobs:
-      - plan
-      - approve-plan:
-         type: approval
-         requires:
-           -  plan
-      - apply:
-          requires:
-            - approve-plan
-      - approve-destroy:
-          type: approval
-          requires:
-            - apply
-      - destroy:
-          requires:
-            - approve-destroy
+      - terraform/plan:
+          account: profile
+          env: profile

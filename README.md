@@ -25,4 +25,3 @@ env variables.
 PROFILE_ACCESS_KEY_ID=
 PROFILE_SECRET_ACCESS_KEY=
 ```
-

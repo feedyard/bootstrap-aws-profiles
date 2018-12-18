@@ -4,7 +4,7 @@
 
 # Module directory
 .terraform/
-
+.idea/
 *.env
 Gemfile.lock
 backend.conf
